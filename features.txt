@@ -1,0 +1,11 @@
+Goals for features for the website:
+
+Overarching - Create a functional calorie tracker
+
+Sub-Goals
+-Register a user and log in
+-Users can create entries for food in database
+-Each user can access foods from the database and log them in a diary
+-A user has access to their diary and noone else.
+
+
