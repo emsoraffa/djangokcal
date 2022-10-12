@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'polls.apps.PollsConfig',
     'kcaljournal.apps.KcaljournalConfig',
-    #'accounts.apps.AccountsConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [

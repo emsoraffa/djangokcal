@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block css %}{{block.super}}
+{% load static %}
+<link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="central-container">
+  <h2>Login</h2>
+  <form method="post" class="login_form" action="authenticate/">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="username">
+    <button type="submit" class="btn">Login</button>
+  </form>
+</div>
+
+
+{% endblock %}
