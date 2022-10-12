@@ -4,7 +4,7 @@ from django.db import models
 class Fooditem(models.Model):
     #Model for food items
     name = models.CharField(max_length=50)
-    produsent = models.CharField(max_length=50, blank=True)
+    producer = models.CharField(max_length=50, blank=True)
     description = models.CharField(max_length=200, blank=True)
 
     #numbers per 100g

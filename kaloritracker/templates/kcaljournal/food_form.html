@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block css %}{{block.super}}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form class="foodform" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="btn" type="submit" value="Save">
+</form>
+
+
+{% endblock %}

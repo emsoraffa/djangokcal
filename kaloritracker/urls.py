@@ -21,4 +21,5 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('kcaljournal/', include('kcaljournal.urls')),
     path('admin/', admin.site.urls),
+    #path('', include('accounts.urls')),
 ]
