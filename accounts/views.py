@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 
@@ -14,10 +14,10 @@ def login_view(request):
 def authenticate_view(request):
     username = request.POST['username']
     password = request.POST['password']
-    user = authenticate(username=username, password=password)
+    user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return render(request, reverse(viewname='journal'))
+        return redirect('')
     else:
         #incorrect login_details
         print("user not logged in")
