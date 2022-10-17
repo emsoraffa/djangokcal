@@ -127,3 +127,14 @@ footer {
     align-items: center;
     height: 30rem;
 }
+
+
+.link {
+    font-weight: bold;
+    text-decoration-line: none;
+    color: #6639A6;
+}
+
+.error_message {
+    color: red;
+}

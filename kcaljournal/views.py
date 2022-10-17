@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
 
 from .models import Fooditem
 from .forms import FoodForm
@@ -56,7 +57,7 @@ class food_register(LoginRequiredMixin ,generic.CreateView):
     
 
 def login_view(request):
-    return render(request, "registration/login.html")
+    return render(request, "registration/login.html", {"user":False})
 
 
 def authenticate_view(request):
@@ -68,10 +69,28 @@ def authenticate_view(request):
         return redirect(reverse('journal'))
     else:
         #incorrect login_details
-        print("user not logged in")
-        pass
+        return render(request, "registration/login.html", {"user":False, "message":"Your login information was incorrect."})
     
 
 def logout_view(request):
     logout(request)
     return redirect(reverse('login_view'))
+
+
+
+def registrate_view(request):
+    return render(request, "registration/registrate.html", {"user":False})
+
+
+def process_account(request):
+    username = request.POST['username']
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
+    password = request.POST['password']
+
+    user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password)
+    login(request, user)
+    
+    return redirect(reverse('journal'))
+
+

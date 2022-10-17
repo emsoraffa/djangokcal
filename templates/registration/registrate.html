@@ -5,25 +5,24 @@
 <link rel="stylesheet" href="{% static 'accounts/accounts.css' %}">
 {% endblock %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Sign up{% endblock %}
 
 
 {% block content %}
 <div class="central-container">
-  <h2>Login</h2>
-  
-  {% if message %}
-  <p class="error_message">{{ message }}</p>
-  {% endif %}
-  <form method="post" class="login_form" action="authenticate/">
+  <h2>Create your account:</h2>
+  <form method="post" class="signup_form" action="process_account/">
     {% csrf_token %}
     <label for="username">Username:</label>
     <input type="text" id="username" name="username">
+    <label for="first_name">First name:</label>
+    <input type="text" id="first_name" name="first_name">
+    <label for="last_name">Last name:</label>
+    <input type="text" id="last_name" name="last_name">
     <label for="password">Password:</label>
     <input type="password" id="password" name="password">
-    <button type="submit" class="btn">Login</button>
+    <button type="submit" class="btn">Create account</button>
   </form>
-  <p>Dont have an account? <a class="link" href="http://127.0.0.1:8000/kcaljournal/registrate/">Sign up today!</a></p>
 </div>
 
 
