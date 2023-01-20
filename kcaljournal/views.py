@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import render, redirect 
 from django.http import HttpResponse
 from django.views import generic
@@ -7,17 +8,30 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
-from .models import Fooditem
+from .models import Fooditem, Journal
 from .forms import FoodForm
+
 # Create your views here.
 
 @login_required
 def journal(request):
+    user_diary = Journal.objects.get(user=request.user)
+    food_entries = list(user_diary.get_food(date=str(date.today().strftime('%Y-%m-%d'))))
+    nutritional_values = {}
+
+    for i in food_entries:
+        nutritional_values[str(i.food)] = i.get_nutrition()
+
     context = {
         'user':request.user.is_authenticated,
-        'username':request.user.username
+        'username':request.user.username,
+        'food':food_entries,
+        'nutritional_values':nutritional_values,
     }
     return render(request, "kcaljournal/index.html", context)
+
+
+
 
 
 class SearchView(LoginRequiredMixin ,generic.ListView):

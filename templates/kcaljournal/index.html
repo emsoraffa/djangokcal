@@ -12,4 +12,15 @@
 
 <h1>Welcome {{ username }}</h1>
 
+<ul>
+{% for item in food %}
+
+    <li>{{ item.food }}, {{ item.amount }}g</li>
+
+    {% endfor %}
+</ul>
+
+
+<a>{{ nutritional_values }}</a>
+
 {% endblock %}
