@@ -1,6 +1,6 @@
 from datetime import date
 from django.shortcuts import render, redirect 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
@@ -9,25 +9,50 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
 from .models import Fooditem, Journal, FoodEntry
-from .forms import FoodForm
+from .forms import FoodForm, FoodEntryForm
 
 # Create your views here.
+TODAY = str(date.today().strftime('%Y-%m-%d'))
 
 @login_required
 def journal(request):
     user_diary = Journal.objects.get(user=request.user)
     
-    food_entries = list(user_diary.get_food(date=str(date.today().strftime('%Y-%m-%d'))))
+    food_entries = list(user_diary.get_food(date=TODAY))
     nutritional_values = FoodEntry.list_food(food_entries)
-    
+
     context = {
         'user':request.user.is_authenticated,
         'username':request.user.username,
         'food':food_entries,
         'nutritional_values':nutritional_values,
+        'totals':user_diary.calculate_nutrition(TODAY)
     }
     return render(request, "kcaljournal/index.html", context)
 
+class add_entry(LoginRequiredMixin ,generic.CreateView):
+    #need to find a way to access request.user withing CreateView
+    model=FoodEntry
+    form_class = FoodEntryForm
+    template_name= 'kcaljournal/add_entry_form.html'
+
+
+    def form_valid(self, form):
+        self.entry = form.save(commit=False)
+        self.entry.journal = Journal.objects.get(user=self.request.user)
+        self.entry.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse('journal')
+
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['user'] = self.request.user.is_authenticated
+        return context
 
 
 

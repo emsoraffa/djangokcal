@@ -12,16 +12,19 @@
 
 <h1>Welcome {{ username }}</h1>
 
+
 <ul>
-{% for item in food %}
-
-    <li>{{ item.food }}, {{ item.amount }}g</li>
-
-    {% endfor %}
+    {% for item in nutritional_values %}
+    
+        <li>{{ item.0 }}, {{ item.1 }}g, {{ item.2 }} kcal</li>
+    
+        {% endfor %}
 </ul>
+    
 
+<h2>Nutrition: </h2>
+<a> Calories: {{ totals.0 }}, Protein: {{ totals.1 }} , Carbohydrates: {{ totals.2 }}, Fat: 
+    {{ totals.3 }}, Sugar: {{ totals.4 }}, Fibre: {{ totals.5 }},</a>
 
-
-<a>{{ nutritional_values }}</a>
-
+    <a class="register_food_btn" href="add_entry/">Add food</a>
 {% endblock %}

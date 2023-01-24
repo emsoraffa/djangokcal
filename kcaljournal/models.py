@@ -30,11 +30,24 @@ class Journal(models.Model):
         #returns foodentry objects
         return FoodEntry.objects.filter(journal=self, date=date)
 
+    def calculate_nutrition(self, date):
+        #calculates the total nutrition for a given date, returns a list of the totals
+        #e.g [calories, protein, carbohydrates, fat, sugar, fibre]
+        totals = [0,0,0,0,0,0]
+        food_entries = list(self.get_food(date))
+        nutritional_values = FoodEntry.list_food(food_entries)
+
+        for i in nutritional_values:
+            for j in range(2,8):
+                totals[j - 2] += float(i[j])
+        return totals
+
+
     
 class FoodEntry(models.Model):
     #a specific entry in a Journal object, is essentially a FoodItem object with a specified amount.
-    journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
-    food = models.ForeignKey(Fooditem, on_delete=models.PROTECT)
+    journal = models.ForeignKey(Journal, on_delete=models.PROTECT)
+    food = models.ForeignKey(Fooditem, on_delete=models.PROTECT) 
     amount = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
     date = models.DateField()
 
@@ -59,13 +72,13 @@ class FoodEntry(models.Model):
         output = []
         for i in entries:
             nutritional_values = i.get_nutrition()
-            output.extend([str(i.food), 
+            output.extend([[str(i.food), 
             i.amount,
             nutritional_values['calories'],
             nutritional_values['protein'],
             nutritional_values['carbohydrates'],
             nutritional_values['fat'], 
             nutritional_values['sugar'], 
-            nutritional_values['fibre']])
+            nutritional_values['fibre']]])
         
         return output
