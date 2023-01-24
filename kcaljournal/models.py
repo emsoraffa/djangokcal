@@ -25,7 +25,9 @@ class Journal(models.Model):
     date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.CharField(max_length=50, blank=True)
+    
     def get_food(self, date):
+        #returns foodentry objects
         return FoodEntry.objects.filter(journal=self, date=date)
 
     
@@ -35,6 +37,7 @@ class FoodEntry(models.Model):
     food = models.ForeignKey(Fooditem, on_delete=models.PROTECT)
     amount = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
     date = models.DateField()
+
 
     def get_nutrition(self):
         #returns a dictionary with each nutritional value (based on the FoodItem object) multiplied by the amount
@@ -48,3 +51,21 @@ class FoodEntry(models.Model):
         }
         return nutrition
 
+    def list_food(entries):
+        ###
+        # takes a dictionary of food entry objects as keys and a dictionary of nutritional values as values 
+        # returns a list where the first two elements is food name and amount and then 
+        # next 6 elements are nutritional values. this repeats for all entries. 
+        output = []
+        for i in entries:
+            nutritional_values = i.get_nutrition()
+            output.extend([str(i.food), 
+            i.amount,
+            nutritional_values['calories'],
+            nutritional_values['protein'],
+            nutritional_values['carbohydrates'],
+            nutritional_values['fat'], 
+            nutritional_values['sugar'], 
+            nutritional_values['fibre']])
+        
+        return output

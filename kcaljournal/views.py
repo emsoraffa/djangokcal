@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 
-from .models import Fooditem, Journal
+from .models import Fooditem, Journal, FoodEntry
 from .forms import FoodForm
 
 # Create your views here.
@@ -16,12 +16,10 @@ from .forms import FoodForm
 @login_required
 def journal(request):
     user_diary = Journal.objects.get(user=request.user)
+    
     food_entries = list(user_diary.get_food(date=str(date.today().strftime('%Y-%m-%d'))))
-    nutritional_values = {}
-
-    for i in food_entries:
-        nutritional_values[str(i.food)] = i.get_nutrition()
-
+    nutritional_values = FoodEntry.list_food(food_entries)
+    
     context = {
         'user':request.user.is_authenticated,
         'username':request.user.username,
