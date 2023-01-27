@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.journal, name='journal'),
     path('add_entry/', views.add_entry.as_view(),name='add_entry'),
     path('search/', views.SearchView.as_view(), name='search'),
+    path('search/<int:pk>/', views.FoodDetail.as_view(),name='details'),
     path('search/food_register/', views.food_register.as_view(), name='food_register'),
     path('login/', views.login_view, name='login_view'),
     path('login/authenticate/', views.authenticate_view, name='authenticate'),

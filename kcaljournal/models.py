@@ -22,13 +22,16 @@ class Fooditem(models.Model):
 class Journal(models.Model):
     #Journal object unique to a user. Contains a list of Fooditem objects,
     #needs: date, foods, calories
-    date = models.DateField()
+    date_created = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.CharField(max_length=50, blank=True)
+    
     
     def get_food(self, date):
         #returns foodentry objects
         return FoodEntry.objects.filter(journal=self, date=date)
+
+    def get_date_created(self):
+        return self.date_created
 
     def calculate_nutrition(self, date):
         #calculates the total nutrition for a given date, returns a list of the totals

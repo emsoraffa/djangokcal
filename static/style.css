@@ -26,6 +26,25 @@ footer {
 
 }
 
+.sub-nav-bar {
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sub-nav-link {
+    color: #3490DE;
+}
+
+#sub-nav-link:hover {
+    color: #6639A6;
+    transition: 0.5s;
+}
+
 .nav-list {
     margin: 0;
     padding: 0;
@@ -62,7 +81,10 @@ footer {
    
 }
 
+
+
 .register_food_btn {
+    text-decoration: none;
     display: block;
     width: 15rem;
     height: 40px;
@@ -135,6 +157,19 @@ footer {
     color: #6639A6;
 }
 
+.link:hover{
+    color: #521262;
+    transition: 0.2s;
+}
+
 .error_message {
     color: red;
+}
+
+#nav_journal {
+    background-color: #6639A6;
+}
+
+#nav_journal_btn {
+    background-color: #6639A6;
 }

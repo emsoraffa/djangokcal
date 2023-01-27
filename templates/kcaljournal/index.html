@@ -13,6 +13,20 @@
 <h1>Welcome {{ username }}</h1>
 
 
+
+
+<div class="sub-nav-bar">
+    <a class="btn" id="nav_journal" href=""><</a>
+    <form method="get">
+        <label for="date">date:</label>
+        <input type="date" id="date" name="day_selected"
+           value="{{ day_selected }}">
+        <input class="btn"  id="nav_journal_btn" type="submit" value="GO">
+    </form>
+    
+    <a class="btn" id="nav_journal" href="">></a>
+</div>
+
 <ul>
     {% for item in nutritional_values %}
     

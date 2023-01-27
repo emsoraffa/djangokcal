@@ -8,10 +8,24 @@
 
 {% block content %}
 
+
+<div class="sub-nav-bar">
+
+
+<form method="get">
+    <input type="text" id="Search" name="query"
+       value="Search for a food">
+    <input class="btn" type="submit" value="GO">
+</form>
+
+
+
+</div>
+
 {%if fooditem_list %}
 <ul>
     {% for fooditem in fooditem_list %}
-    <li>{{ fooditem.name }}, {{ fooditem.producer }}</li>
+    <li><a class="link" href="{{ fooditem.id }}">{{ fooditem.name }}, {{ fooditem.producer }}</a></li>
 
     {% endfor %}
 </ul>
@@ -19,6 +33,25 @@
 <p>No foods available</p>
 {% endif %}
 
-<a class="register_food_btn" href="food_register/">Register a new food item</a>
+<a class="register_food_btn" href="food_register/">Register food</a>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="link" href="?page=1">&laquo; first</a>
+            <a class="link" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="link" href="?page={{ page_obj.next_page_number }}">next</a>
+            <a class="link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 
 {% endblock %}

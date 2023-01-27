@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 from .models import Fooditem, Journal, FoodEntry
 from .forms import FoodForm, FoodEntryForm
@@ -18,7 +19,8 @@ TODAY = str(date.today().strftime('%Y-%m-%d'))
 def journal(request):
     user_diary = Journal.objects.get(user=request.user)
     
-    food_entries = list(user_diary.get_food(date=TODAY))
+    day_selected = request.GET.get('day_selected', TODAY)
+    food_entries = list(user_diary.get_food(date=day_selected))
     nutritional_values = FoodEntry.list_food(food_entries)
 
     context = {
@@ -26,7 +28,9 @@ def journal(request):
         'username':request.user.username,
         'food':food_entries,
         'nutritional_values':nutritional_values,
-        'totals':user_diary.calculate_nutrition(TODAY)
+        'totals':user_diary.calculate_nutrition(TODAY),
+        'day_selected':day_selected,
+        'date_created':user_diary.get_date_created(),
     }
     return render(request, "kcaljournal/index.html", context)
 
@@ -55,11 +59,15 @@ class add_entry(LoginRequiredMixin ,generic.CreateView):
         return context
 
 
+class FoodDetail(LoginRequiredMixin, generic.DetailView):
+    template_name = 'kcaljournal/details.html'
+    model = Fooditem
 
 
-class SearchView(LoginRequiredMixin ,generic.ListView):
+class SearchView(generic.ListView):
     template_name = 'kcaljournal/search.html'
     context_object_name= 'fooditem_list'
+    paginate_by= 1
     def get_queryset(self):
         return Fooditem.objects.all()
     
@@ -126,6 +134,8 @@ def process_account(request):
     password = request.POST['password']
 
     user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password)
+    user_jornal = Journal(user=user, date_created=TODAY)
+    user_jornal.save()
     login(request, user)
     
     return redirect(reverse('journal'))

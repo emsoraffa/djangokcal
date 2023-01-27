@@ -1,6 +1,11 @@
 TODO:
 
--Display Journal correctly
--Create a journal object for every user
--Be able to navigate through dates in journal
-- create form for registering FoodEntries (possibly Done !!!!)
+Features:
+
+
+FERDIGGGG
+
+Design:
+-Javascript to make buttons change journal date
+-Center content
+- mer?

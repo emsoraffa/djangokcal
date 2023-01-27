@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block css %}{{block.super}}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<h1>{{ object.name }}</h1>
+<p>Producer: {{ object.producer }}</p>
+<p>Description: {{ object.description }}</p>
+<p>Calories: {{ object.calories }} Kcal</p>
+<p>Protein: {{ object.protein }}g</p>
+<p>Carbohydrates: {{ object.carbohydrates }}g</p>
+<p>Fat: {{ object.fat }}g</p>
+<p>Sugar: {{ object.sugar }}g</p>
+<p>Fibre: {{ object.fibre }}g</p>
+
+<a class="nav-link" id="sub-nav-link" href="/kcaljournal/search/">Return</a>
+{% endblock %}
