@@ -15,7 +15,7 @@ from .forms import FoodForm, FoodEntryForm
 # Create your views here.
 TODAY = str(date.today().strftime('%Y-%m-%d'))
 
-@login_required
+@login_required(login_url='/login/')
 def journal(request):
     user_diary = Journal.objects.get(user=request.user)
     
