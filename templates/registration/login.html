@@ -17,10 +17,10 @@
   {% endif %}
   <form method="post" class="login_form" action="authenticate/">
     {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+    <label class="form-element" for="username">Username:</label>
+    <input class="form-element" type="text" id="username" name="username">
+    <label class="form-element" for="password">Password:</label>
+    <input class="form-element" type="password" id="password" name="password">
     <button type="submit" class="btn">Login</button>
   </form>
   <p>Dont have an account? <a class="link" href="http://127.0.0.1:8000/kcaljournal/registrate/">Sign up today!</a></p>

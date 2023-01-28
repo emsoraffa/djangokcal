@@ -8,12 +8,20 @@ footer {
 }
 
 .login_form {
-    height: 40%;
+    height: 40vh;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: start;
+    padding-top: 2vh;
+    
 }
+
+.form-element{
+    width: 100%;
+}
+
 
 h2 {
     font-weight: bold;
@@ -26,9 +34,9 @@ label {
 }
 
 .signup_form {
-    height: 40%;
+    height: 40vh;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    justify-content: space-between;
 }

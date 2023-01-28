@@ -42,14 +42,14 @@ class Journal(models.Model):
 
         for i in nutritional_values:
             for j in range(2,8):
-                totals[j - 2] += float(i[j])
+                totals[j - 2] += round(float(i[j]),2)
         return totals
 
 
     
 class FoodEntry(models.Model):
     #a specific entry in a Journal object, is essentially a FoodItem object with a specified amount.
-    journal = models.ForeignKey(Journal, on_delete=models.PROTECT)
+    journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
     food = models.ForeignKey(Fooditem, on_delete=models.PROTECT) 
     amount = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
     date = models.DateField()
@@ -58,12 +58,12 @@ class FoodEntry(models.Model):
     def get_nutrition(self):
         #returns a dictionary with each nutritional value (based on the FoodItem object) multiplied by the amount
         nutrition = {
-        'calories' : self.food.calories * (self.amount/100),
-        'protein' : self.food.protein * (self.amount/100),
-        'carbohydrates' : self.food.carbohydrates * (self.amount/100),
-        'fat' : self.food.fat * (self.amount/100),
-        'sugar' : self.food.sugar * (self.amount/100),
-        'fibre' : self.food.fibre * (self.amount/100),
+        'calories' : round(self.food.calories * (self.amount/100),2),
+        'protein' : round(self.food.protein * (self.amount/100),2),
+        'carbohydrates' : round(self.food.carbohydrates * (self.amount/100),2),
+        'fat' : round(self.food.fat * (self.amount/100),2),
+        'sugar' : round(self.food.sugar * (self.amount/100),2),
+        'fibre' : round(self.food.fibre * (self.amount/100),2),
         }
         return nutrition
 

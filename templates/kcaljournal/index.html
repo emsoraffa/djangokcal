@@ -16,15 +16,23 @@
 
 
 <div class="sub-nav-bar">
-    <a class="btn" id="nav_journal" href=""><</a>
+    <a class="btn" id="nav_btn" onClick="navigateDate('Left')" ><</a>
     <form method="get">
-        <label for="date">date:</label>
-        <input type="date" id="date" name="day_selected"
+        <div id="sub-nav-container">
+            <div id="sub-nav-row">
+                <label for="date">date:</label>
+                <input type="date" id="date" name="day_selected"
            value="{{ day_selected }}">
-        <input class="btn"  id="nav_journal_btn" type="submit" value="GO">
+            </div>
+            <div id="sub-nav-row">
+                <input class="btn"  id="nav_journal_btn" type="submit" value="GO">
+            </div>
+        </div>
+        
+        
     </form>
     
-    <a class="btn" id="nav_journal" href="">></a>
+    <a class="btn" id="nav_btn" onClick="navigateDate('Right')" >></a>
 </div>
 
 <ul>
@@ -37,8 +45,18 @@
     
 
 <h2>Nutrition: </h2>
-<a> Calories: {{ totals.0 }}, Protein: {{ totals.1 }} , Carbohydrates: {{ totals.2 }}, Fat: 
-    {{ totals.3 }}, Sugar: {{ totals.4 }}, Fibre: {{ totals.5 }},</a>
+<div class="nutrition-container">
+    <div class="nutrition-column">
+        <p>Calories: {{ totals.0 }}</p>
+        <p>Sugar: {{ totals.4 }}</p>
+        <p>Fibre: {{ totals.5 }}</p>
+    </div>
+    <div class="nutrition-column">
+        <p>Protein: {{ totals.1 }}</p>
+        <p>Carbohydrates: {{ totals.2 }}</p>
+        <p>Fat: {{ totals.3 }}</p>
+    </div>
+</div>
 
     <a class="register_food_btn" href="add_entry/">Add food</a>
 {% endblock %}

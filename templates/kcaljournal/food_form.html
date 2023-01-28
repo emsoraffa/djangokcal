@@ -10,7 +10,9 @@
 <form class="foodform" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="btn" type="submit" value="Save">
+    <div class="central-container">
+        <input class="btn" id="submit_btn" type="submit" value="Save">
+    </div>
 </form>
 
 

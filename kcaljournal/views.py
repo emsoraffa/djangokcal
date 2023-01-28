@@ -67,9 +67,13 @@ class FoodDetail(LoginRequiredMixin, generic.DetailView):
 class SearchView(generic.ListView):
     template_name = 'kcaljournal/search.html'
     context_object_name= 'fooditem_list'
-    paginate_by= 1
+    paginate_by= 15
     def get_queryset(self):
-        return Fooditem.objects.all()
+        if self.request.GET.get('query'):
+            search = self.request.GET['query']
+            return Fooditem.objects.filter(name__icontains=search)
+        else:
+            return Fooditem.objects.all()
     
     
     def get_context_data(self, **kwargs):
@@ -133,11 +137,17 @@ def process_account(request):
     last_name = request.POST['last_name']
     password = request.POST['password']
 
-    user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password)
-    user_jornal = Journal(user=user, date_created=TODAY)
-    user_jornal.save()
-    login(request, user)
+    try:
+        user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, password=password)
+        user_jornal = Journal(user=user, date_created=TODAY)
+        user_jornal.save()
+        login(request, user)
     
-    return redirect(reverse('journal'))
+        return redirect(reverse('journal'))
+    except ValueError as e:
+        return redirect(reverse('sign_up'))
+    
+    
+    
 
 

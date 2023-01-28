@@ -1,11 +1,3 @@
 TODO:
 
-Features:
-
-
-FERDIGGGG
-
-Design:
--Javascript to make buttons change journal date
--Center content
-- mer?
+Deploy

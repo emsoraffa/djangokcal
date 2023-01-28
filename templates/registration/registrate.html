@@ -13,14 +13,14 @@
   <h2>Create your account:</h2>
   <form method="post" class="signup_form" action="process_account/">
     {% csrf_token %}
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username">
-    <label for="first_name">First name:</label>
-    <input type="text" id="first_name" name="first_name">
-    <label for="last_name">Last name:</label>
-    <input type="text" id="last_name" name="last_name">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password">
+    <label class="form-element" for="username">Username:</label>
+    <input class="form-element" type="text" id="username" name="username">
+    <label class="form-element" for="first_name">First name:</label>
+    <input class="form-element" type="text" id="first_name" name="first_name">
+    <label class="form-element" for="last_name">Last name:</label>
+    <input class="form-element" type="text" id="last_name" name="last_name">
+    <label class="form-element" for="password">Password:</label>
+    <input class="form-element" type="password" id="password" name="password">
     <button type="submit" class="btn">Create account</button>
   </form>
 </div>

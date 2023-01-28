@@ -12,6 +12,7 @@
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="{% static 'kcaljournal.js' %}"></script>
 
     {% block css %}
     {% endblock %}
@@ -42,8 +43,11 @@
         </nav>
     </header>
     <main>
+        <div class="central-container">
         {% block content %}
         {% endblock %}
+        </div>
+        
     </main>
     <footer>
         <div></div>

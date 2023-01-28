@@ -1,4 +1,11 @@
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 
 html {
     font-family: 'Montserrat', sans-serif;
@@ -6,14 +13,34 @@ html {
 
 body {
     background-color: #EEEEEE;
+    
 }
 
+main {
+    min-height: 100vh;
+    min-width: 100%;
+}
 
 footer {
-    margin-top: 100%;
     background-color: #521262;
     height: 8rem;
 }
+
+form {
+    justify-content: center;
+}
+
+ul {
+    padding-inline-start: 0;
+    width: 90%;
+    text-align: center;
+}
+
+li {
+    list-style-type: none;
+    margin-top: 5px;
+}
+
 .nav-bar {
     margin: 0;
     padding: 0;
@@ -33,7 +60,8 @@ footer {
     padding-bottom: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    width: 80vw;
 }
 
 #sub-nav-link {
@@ -85,16 +113,16 @@ footer {
 
 .register_food_btn {
     text-decoration: none;
-    display: block;
-    width: 15rem;
-    height: 40px;
+    display: inline-block;
+    width: 25vw;
+    height: 3.5vh;
     background: #3490DE;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: white;
     font-weight: bold;
-    line-height: 2rem;
+    font-size: medium;
 }
 
 .register_food_btn:hover {
@@ -108,15 +136,13 @@ footer {
 }
 
 .btn {
-    display: block;
-    width: 15rem;
-    height: 40px;
     background: #3490DE;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: white;
     font-weight: 700;
+    text-decoration: none;
 }
 
 .btn:hover {
@@ -141,13 +167,15 @@ footer {
     margin: 5px;
 }
 
+
 .central-container {
-    width: auto;
+    width: 98%;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 30rem;
+    height: 100vh;
+    background-color: white;
 }
 
 
@@ -171,5 +199,61 @@ footer {
 }
 
 #nav_journal_btn {
-    background-color: #6639A6;
+    background-color: white;
+    border-color: #3490DE;
+    color: #3490DE;
+    align-items: center;
+    border: none;
+}
+#nav_journal_btn:hover{
+    color: grey;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#submit_btn {
+    height: 1.5rem;
+    width: 4rem;
+    text-align: center;
+    line-height: 0;
+    padding: 2px;
+}
+
+#sub-nav-container{
+    display: flex;
+    flex-direction: column;
+}
+
+#sub-nav-row{
+    justify-content: center;
+    text-align: center;
+}
+
+#nav_btn{
+    height: 50%;
+    background-color: white;
+    color: #3490DE;
+    border-color:#3490DE;
+    border-width: 2px;
+    justify-self: center;
+}
+
+#nav_btn:hover{
+    color: grey;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.nutrition-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.nutrition-column{
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.detail-container{
+    text-align: center;
 }
