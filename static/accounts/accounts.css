@@ -39,6 +39,5 @@ label {
     width: 30vw;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     max-width: 15rem;
 }
