@@ -86,6 +86,7 @@ class SearchView(generic.ListView):
 
 
 class food_register(LoginRequiredMixin ,generic.CreateView):
+    login_url='/login/'
     model=Fooditem
     form_class = FoodForm
     template_name= 'kcaljournal/food_form.html'
