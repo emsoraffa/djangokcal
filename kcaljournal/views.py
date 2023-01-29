@@ -35,7 +35,8 @@ def journal(request):
     return render(request, "kcaljournal/index.html", context)
 
 class add_entry(LoginRequiredMixin ,generic.CreateView):
-    #need to find a way to access request.user withing CreateView
+    login_url='/login/'
+
     model=FoodEntry
     form_class = FoodEntryForm
     template_name= 'kcaljournal/add_entry_form.html'
