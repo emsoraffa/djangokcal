@@ -14,6 +14,7 @@ footer {
     flex-direction: column;
     flex-wrap: wrap;
     padding-top: 2vh;
+    max-width: 15rem;
     
 }
 
@@ -39,4 +40,5 @@ label {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    max-width: 15rem;
 }

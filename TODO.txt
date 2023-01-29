@@ -1,3 +1,9 @@
 TODO:
 
 Deploy
+
+local environment
+environment variables
+postgresql database
+
+done? deploy checklist
