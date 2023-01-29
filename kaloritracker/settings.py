@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-_d0r&ehc+)$q6w^t-fnusthy+m+c#qk!6*i3))&qt61=f)$a@c'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG_VALUE') == True)
 
 ALLOWED_HOSTS = ['dingofit.herokuapp.com']
 
