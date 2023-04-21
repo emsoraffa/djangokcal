@@ -58,7 +58,7 @@ class add_entry(LoginRequiredMixin ,generic.CreateView):
         # Add in a QuerySet of all the books
         context['user'] = self.request.user.is_authenticated
         if self.request.GET.get('query'):
-            context['form'].fields['food'].queryset = Fooditem.objects.get(name=self.request.GET.get('query'))
+            context['form'].fields['food'].queryset = Fooditem.objects.filter(name__icontains=self.request.GET.get('query'))
         else:
             context['form'].fields['food'].queryset = Fooditem.objects.all()
 
