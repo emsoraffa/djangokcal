@@ -11,7 +11,7 @@ class FoodEntryForm(ModelForm):
         model = FoodEntry
         fields=['food', 'amount', 'date']
         widgets = {
-            'made_on': DateInput(),
+            'date': DateInput(),
         }
         
 
