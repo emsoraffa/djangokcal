@@ -16,7 +16,6 @@ class FoodEntryForm(forms.ModelForm):
         fields=['food', 'amount', 'date']
         widgets = {
             'date': DateInput(),
-            'food':forms.ModelChoiceField(queryset=Fooditem.objects.all()),
         }
         
 
