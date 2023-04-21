@@ -17,7 +17,7 @@ class Fooditem(models.Model):
     fibre = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.name+" "+self.producer
 
 class Journal(models.Model):
     #Journal object unique to a user. Contains a list of Fooditem objects,
@@ -51,7 +51,7 @@ class FoodEntry(models.Model):
     #a specific entry in a Journal object, is essentially a FoodItem object with a specified amount.
     journal = models.ForeignKey(Journal, on_delete=models.CASCADE)
     food = models.ForeignKey(Fooditem, on_delete=models.PROTECT) 
-    amount = models.DecimalField(decimal_places=2, max_digits=6, blank=True)
+    amount = models.DecimalField(decimal_places=2, max_digits=6, blank=True, help_text="grams")
     date = models.DateField()
 
 
