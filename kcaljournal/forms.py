@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import DateInput, ModelForm
 from .models import Fooditem,FoodEntry, Journal
 
 class FoodForm(ModelForm):
@@ -10,5 +10,8 @@ class FoodEntryForm(ModelForm):
     class Meta:
         model = FoodEntry
         fields=['food', 'amount', 'date']
+        widgets = {
+            'made_on': DateInput(),
+        }
         
 
